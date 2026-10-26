@@ -230,9 +230,10 @@ def print_report(requests, payloads, parts):
     if missing or mismatches:
         n_missing_reqs = sum(len(truths[eid]) for eid in missing)
         print()
-        print("GROUND-TRUTH GATE FAILED (scored below, read every number against this):")
-        print(f"  {len(missing)} answer IDs ({n_missing_reqs} requests) are not in {COLLECTION}; those requests are")
-        print("  scored as misses of kind answer_not_in_collection.")
+        print("STOPPED: ground-truth gate failed, so no precision@1 or failure counts are printed.")
+        print(f"  {len(missing)} answer IDs ({n_missing_reqs} requests) are not in {COLLECTION}:")
+        for eid in missing:
+            print(f"    {eid}  (requests: {', '.join(r['request_id'] for r in truths[eid])})")
         print(f"  {len(mismatches)} requests disagree with the collection's design/colour.")
         print()
         print("Source provenance for the disagreeing rows:")
@@ -251,6 +252,8 @@ def print_report(requests, payloads, parts):
               f"{len(mismatches) - agree - unlisted}, and does not list the element on {unlisted}.")
         print("  The public Rebrickable dump disagrees with every one, so the task data and the public dump")
         print("  number elements differently. No side is named wrong until that numbering is confirmed.")
+        print("  Rerun once the labels' source inventory is known and all 100 answer IDs resolve.")
+        return False
 
     hits, rows = precision_at_1(requests, parts)
     counts, false_negatives, false_positives, patterns = conflict_detection(requests, parts)
@@ -314,7 +317,9 @@ def main():
     payloads = load_collection_payloads(client)
     parts = load_parts(PARTS_PATH)
     with open(REPORT_PATH, "w", encoding="utf-8") as report, contextlib.redirect_stdout(Tee(sys.stdout, report)):
-        print_report(requests, payloads, parts)
+        complete = print_report(requests, payloads, parts)
+    if complete is False:
+        sys.exit(1)
 
 
 if __name__ == "__main__":
