@@ -1,0 +1,136 @@
+element_id,design_number,part_name,colour_id,colour_name,part_category,quantity_in_set,bag_number,is_spare
+4211387,3001,Brick 2 x 4,72,Dark Bluish Gray,Bricks,14,3,false
+4211388,3001,Brick 2 x 4,71,Light Bluish Gray,Bricks,8,5,false
+4211385,3002,Brick 2 x 3,71,Light Bluish Gray,Bricks,6,3,false
+4211386,3003,Brick 2 x 2,71,Light Bluish Gray,Bricks,10,2,false
+4211062,3003,Brick 2 x 2,72,Dark Bluish Gray,Bricks,6,6,false
+4114085,3003,Brick 2 x 2,0,Black,Bricks,4,1,false
+4211365,3004,Brick 1 x 2,71,Light Bluish Gray,Bricks,22,2,false
+4211089,3004,Brick 1 x 2,72,Dark Bluish Gray,Bricks,12,6,false
+4114086,3004,Brick 1 x 2,0,Black,Bricks,7,1,false
+4211389,3005,Brick 1 x 1,71,Light Bluish Gray,Bricks,18,3,false
+4159553,3024,Plate 1 x 1,19,Tan,Bricks,3,13,false
+4211368,3008,Brick 1 x 8,71,Light Bluish Gray,Bricks,4,10,false
+4211369,3009,Brick 1 x 6,71,Light Bluish Gray,Bricks,5,9,false
+4211094,3009,Brick 1 x 6,72,Dark Bluish Gray,Bricks,2,14,false
+4211366,3010,Brick 1 x 4,71,Light Bluish Gray,Bricks,9,4,false
+4211067,3010,Brick 1 x 4,72,Dark Bluish Gray,Bricks,6,7,false
+4126302,3010,Brick 1 x 4,15,White,Bricks,2,12,false
+4211364,3622,Brick 1 x 3,71,Light Bluish Gray,Bricks,11,4,false
+4211079,3622,Brick 1 x 3,72,Dark Bluish Gray,Bricks,4,8,false
+4211087,2877,Brick 1 x 2 with Grille,72,Dark Bluish Gray,Bricks,8,11,false
+4211394,3004,Brick 1 x 2,71,Light Bluish Gray,Plates,16,1,false
+4211065,3020,Plate 2 x 4,72,Dark Bluish Gray,Plates,10,2,false
+4211395,3021,Plate 2 x 3,71,Light Bluish Gray,Plates,8,5,false
+4211397,3022,Plate 2 x 2,71,Light Bluish Gray,Plates,12,4,false
+4211063,3023,Plate 1 x 2,72,Dark Bluish Gray,Plates,7,9,false
+4211398,3023,Plate 1 x 2,71,Light Bluish Gray,Plates,88,1,false
+4211091,3023,Plate 1 x 2,72,Dark Bluish Gray,Plates,54,2,false
+4114088,3023,Plate 1 x 2,0,Black,Plates,11,1,false
+4211399,3024,Plate 1 x 1,71,Light Bluish Gray,Plates,64,3,false
+4210719,3024,Plate 1 x 1,72,Dark Bluish Gray,Plates,36,5,false
+4159554,3024,Plate 1 x 1,19,Tan,Plates,1,13,true
+4211428,3623,Plate 1 x 3,71,Light Bluish Gray,Plates,14,9,false
+4211401,3710,Plate 1 x 4,71,Light Bluish Gray,Plates,24,6,false
+4211083,3710,Plate 1 x 4,72,Dark Bluish Gray,Plates,15,7,false
+4211438,3666,Plate 1 x 6,71,Light Bluish Gray,Plates,19,8,false
+4211076,3666,Plate 1 x 6,72,Dark Bluish Gray,Plates,9,10,false
+4211437,3460,Plate 1 x 8,71,Light Bluish Gray,Plates,12,11,false
+4211444,3795,Plate 2 x 6,71,Light Bluish Gray,Plates,7,12,false
+4211442,3832,Plate 2 x 10,71,Light Bluish Gray,Plates,3,15,false
+4211064,4282,Plate 2 x 16,72,Dark Bluish Gray,Plates,2,16,false
+4211432,3068b,Tile 2 x 2 with Groove,71,Light Bluish Gray,Tiles,20,14,false
+4211056,3068b,Tile 2 x 2 with Groove,72,Dark Bluish Gray,Tiles,6,15,false
+4211415,3070b,Tile 1 x 1 with Groove,71,Light Bluish Gray,Tiles,42,12,false
+4211052,3069b,Tile 1 x 2 with Groove,72,Dark Bluish Gray,Tiles,28,13,false
+4618432,3069b,Tile 1 x 2 with Groove,15,White,Tiles,4,7,false
+4211414,3069b,Tile 1 x 2 with Groove,71,Light Bluish Gray,Tiles,31,10,false
+4210848,3069b,Tile 1 x 2 with Groove,72,Dark Bluish Gray,Tiles,17,11,false
+4558911,3070b,Tile 1 x 1 with Groove,320,Dark Red,Tiles,1,4,true
+4211461,2431,Tile 1 x 4,71,Light Bluish Gray,Tiles,13,16,false
+4560182,87079,Tile 2 x 4,71,Light Bluish Gray,Tiles,9,17,false
+6097394,15712,Tile 1 x 2 with Clip,71,Light Bluish Gray,Tiles Special,18,8,false
+6097395,15712,Tile 1 x 2 with Clip,72,Dark Bluish Gray,Tiles Special,12,9,false
+4581224,2555,Tile 1 x 1 with Clip,71,Light Bluish Gray,Tiles Special,10,6,false
+4558263,2555,Tile 1 x 1 with Clip,15,White,Tiles Special,1,5,true
+4211526,2412b,Tile Special 1 x 2 Grille with Bottom Groove,71,Light Bluish Gray,Tiles Special,26,14,false
+4211046,2412b,Tile Special 1 x 2 Grille with Bottom Groove,72,Dark Bluish Gray,Tiles Special,16,15,false
+4211411,3040,Slope 45° 2 x 1,71,Light Bluish Gray,Slopes,8,7,false
+4211059,3040,Slope 45° 2 x 1,72,Dark Bluish Gray,Slopes,6,12,false
+4211058,3039,Slope 45° 2 x 2,72,Dark Bluish Gray,Slopes,4,16,false
+4167420,3039,Slope 45° 2 x 2,15,White,Slopes,2,12,false
+4519423,61409,Slope 18° 2 x 1 x 2/3 with Grille,0,Black,Slopes,10,11,false
+4211427,3794b,Plate Special 1 x 2 with 1 Stud with Groove (Jumper),71,Light Bluish Gray,Plates Special,27,3,false
+4211060,3794b,Plate Special 1 x 2 with 1 Stud with Groove (Jumper),72,Dark Bluish Gray,Plates Special,21,6,false
+4568291,3794b,Plate Special 1 x 2 with 1 Stud with Groove (Jumper),320,Dark Red,Plates Special,3,16,false
+6050284,2540,Plate Special 1 x 2 with Handle on Side - Free Ends,72,Dark Bluish Gray,Plates Special,12,10,false
+6047235,99780,Bracket 1 x 2 - 1 x 2 Inverted,71,Light Bluish Gray,Plates Special,14,8,false
+4211525,4073,Plate Round 1 x 1 Straight Side,71,Light Bluish Gray,Round and Dish,112,2,false
+4210721,4073,Plate Round 1 x 1 Straight Side,72,Dark Bluish Gray,Round and Dish,38,13,false
+4648236,6141,Plate Round 1 x 1 with Solid Stud,47,Trans-Clear,Round and Dish,1,3,true
+6134498,98138,Tile Round 1 x 1,47,Trans-Clear,Round and Dish,4,1,false
+4539069,60474,Plate Round 4 x 4 with Hole,0,Black,Round and Dish,2,17,false
+4258412,3960,Dish 4 x 4 Inverted (Radar) with Solid Stud,15,White,Round and Dish,1,17,false
+4121715,2780,Technic Pin with Friction Ridges Lengthwise and Center Slots,0,Black,Technic Pins,46,1,false
+4666579,3749,Technic Axle Pin without Friction Ridges Lengthwise,19,Tan,Technic Pins,3,4,false
+4144024,32000,Technic Brick 1 x 2 with Holes,0,Black,Technic Beams,6,2,false
+6029156,32523,Technic Beam 1 x 3 Thick,28,Dark Tan,Technic Beams,2,14,false
+4495935,32524,Technic Beam 1 x 7 Thick,0,Black,Technic Beams,4,5,false
+4538034,44301,Hinge Plate 1 x 2 Locking with 1 Finger on Side,28,Dark Tan,Hinges and Clips,4,15,false
+6051726,44302,Hinge Plate 1 x 2 Locking with 2 Fingers on End,70,Reddish Brown,Hinges and Clips,4,15,false
+4521853,2429c01,Hinge Plate 1 x 4 Swivel Top / Base,70,Reddish Brown,Hinges and Clips,2,9,false
+4211518,2412b,Tile Special 1 x 2 Grille with Bottom Groove,71,Light Bluish Gray,,,7,false
+6028182,4073,Plate Round 1 x 1 Straight Side,41,Trans-Light Blue,,,16,false
+4211574,41769,Wedge Plate 4 x 2 Right,71,Light Bluish Gray,,,11,false
+4211575,41770,Wedge Plate 4 x 2 Left,71,Light Bluish Gray,,,12,false
+4210851,3068b,Tile 2 x 2 with Groove,72,Dark Bluish Gray,,,4,false
+306926,3069b,Tile 1 x 2 with Groove,0,Black,,,2,false
+4515374,54200,Brick Sloped 30° 1 x 1 x 2/3 (Cheese Slope),72,Dark Bluish Gray,,,8,false
+4211474,4070,Brick Special 1 x 1 with Headlight,71,Light Bluish Gray,,,10,false
+4211450,3666,Plate 1 x 6,71,Light Bluish Gray,,,13,false
+4514553,6558,"Technic Pin Long with Friction Ridges Lengthwise, 2 Center Slots",1,Blue,,,1,false
+4211481,4162,Tile 1 x 8 with Groove,71,Light Bluish Gray,,,14,false
+4211417,2431,Tile 1 x 4,71,Light Bluish Gray,,,15,false
+3005740,4073,Plate Round 1 x 1 Straight Side,47,Trans-Clear,,,16,false
+4210633,4073,Plate Round 1 x 1 Straight Side,72,Dark Bluish Gray,,,7,false
+4210667,3710,Plate 1 x 4,72,Dark Bluish Gray,,,3,false
+6013027,99781,Bracket 1 x 2 - 1 x 2,71,Light Bluish Gray,,,11,false
+4211446,2420,Plate 2 x 2 Corner,71,Light Bluish Gray,,,5,false
+4211501,30414,Brick Special 1 x 4 with 4 Studs on One Side,71,Light Bluish Gray,,,10,false
+6047216,15068,Brick Curved 2 x 2 x 2/3,71,Light Bluish Gray,,,13,false
+4211483,4274,Technic Pin 1/2 without Friction Ridges,71,Light Bluish Gray,,,1,false
+302426,3024,Plate 1 x 1,0,Black,,,6,false
+4125253,3069b,Tile 1 x 2 with Groove,19,Tan,,,7,false
+4210631,2412b,Tile Special 1 x 2 Grille with Bottom Groove,72,Dark Bluish Gray,,,8,false
+4515364,61409,Slope 18° 2 x 1 x 2/3 with Grille,71,Light Bluish Gray,,,9,false
+4211396,3020,Plate 2 x 4,71,Light Bluish Gray,,,10,false
+6058221,98138,Tile Round 1 x 1,41,Trans-Light Blue,,,16,false
+4211429,3623,Plate 1 x 3,71,Light Bluish Gray,,,12,false
+4560183,87079,Tile 2 x 4,72,Dark Bluish Gray,,,13,false
+6020193,11211,Brick Special 1 x 2 with 2 Studs on 1 Side,71,Light Bluish Gray,,,10,false
+302326,3023,Plate 1 x 2,0,Black,,,2,false
+4211459,32028,Plate Special 1 x 2 with Door Rail,71,Light Bluish Gray,,,14,false
+4211628,30374,Bar 4L (Lightsaber Blade / Wand),71,Light Bluish Gray,,,17,false
+6035364,15573,Plate Special 1 x 2 with 1 Stud with Groove and Inside Stud Holder (Jumper),71,Light Bluish Gray,,,6,false
+4547489,85984,Brick Sloped 30° 1 x 2 x 2/3,71,Light Bluish Gray,,,8,false
+4504382,54200,Brick Sloped 30° 1 x 1 x 2/3 (Cheese Slope),71,Light Bluish Gray,,,9,false
+4558953,87087,Brick Special 1 x 1 with Stud on 1 Side,72,Dark Bluish Gray,,,11,false
+4211452,3795,Plate 2 x 6,71,Light Bluish Gray,,,12,false
+4211807,3673,Technic Pin without Friction Ridges Lengthwise,71,Light Bluish Gray,,,1,false
+4558169,63864,Tile 1 x 3,71,Light Bluish Gray,,,15,false
+300126,3001,Brick 2 x 4,0,Black,,,2,false
+302301,3023,Plate 1 x 2,15,White,,,14,false
+4529236,4589b,Cone 1 x 1 [No Top Groove],72,Dark Bluish Gray,,,16,false
+6061538,11477,Brick Curved 2 x 1 No Studs [1/2 Bow],71,Light Bluish Gray,,,14,false
+4211460,3832,Plate 2 x 10,71,Light Bluish Gray,,,15,false
+4211578,43723,Wedge Plate 3 x 2 Left,71,Light Bluish Gray,,,12,false
+4211579,43722,Wedge Plate 3 x 2 Right,71,Light Bluish Gray,,,12,false
+3006247,3062b,Brick Round 1 x 1 Open Stud,47,Trans-Clear,,,16,false
+4650260,98138,Tile Round 1 x 1,71,Light Bluish Gray,,,8,false
+4211445,3710,Plate 1 x 4,71,Light Bluish Gray,,,3,false
+4211413,3068b,Tile 2 x 2 with Groove,71,Light Bluish Gray,,,4,false
+306801,3068b,Tile 2 x 2 with Groove,15,White,,,17,false
+307026,3070b,Tile 1 x 1 with Groove,0,Black,,,17,false
+4114306,3023,Plate 1 x 2,19,Tan,,,7,false
+4558952,87087,Brick Special 1 x 1 with Stud on 1 Side,71,Light Bluish Gray,,,11,false
+4211449,3062b,Brick Round 1 x 1 Open Stud,71,Light Bluish Gray,,,16,false

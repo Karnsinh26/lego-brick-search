@@ -7,7 +7,7 @@ import sys
 from search import client, dense_search
 
 REQUESTS_PATH = "data/labelled_missing_brick_requests.csv"
-PARTS_PATH = "data/rebrickable_75192_parts_list.csv"
+PARTS_PATH = "data/parts_75192_full.csv"
 COLLECTION = "parts_75192"
 REPORT_PATH = "outputs/baseline_failure_report.txt"
 
@@ -41,6 +41,7 @@ FAILURE_KINDS = [
     ("conflict", "typed part number + typed colour, and no parts-list element has that design in that colour"),
     ("wrong_colour", "top-1 has the ground-truth design number but a different colour"),
     ("lookalike_design", "top-1 has a different design number from the ground truth"),
+    ("duplicate_element", "top-1 has the ground-truth design and colour but another element_id"),
 ]
 
 
@@ -83,9 +84,11 @@ def failure_kind(request, top1_design, top1_colour, parts):
         return "wrong_colour"
     if top1_design != truth_design:
         return "lookalike_design"
+    if top1_colour == truth_colour:
+        return "duplicate_element"
     raise UnclassifiedMiss(
         f"{request['request_id']}: top-1 matches the ground-truth design {truth_design} and colour "
-        f"{truth_colour} but is a different element_id; no failure kind covers this"
+        f"{truth_colour} but no failure kind covers this"
     )
 
 

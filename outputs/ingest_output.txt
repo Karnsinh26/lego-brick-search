@@ -1,3 +1,3 @@
-Embedded 80 part descriptions
-Qdrant points: 80  |  Distinct element_ids in CSV: 80
+Embedded 135 part descriptions
+Qdrant points: 135  |  Distinct element_ids in CSV: 135
 Counts match
