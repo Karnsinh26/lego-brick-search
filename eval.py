@@ -251,10 +251,18 @@ def print_element_table_check(requests):
     print()
     print("Element-table check (evidence, not scored): each answer ID looked up in Rebrickable's full element table")
     print("  " + "  |  ".join(f"{k}: {len(v)}" for k, v in outcomes.items()))
-    for kind in ("different part", "different colour", "element_id unknown"):
+    print(f"  total accounted for: {sum(len(v) for v in outcomes.values())} of {len(answers)} distinct answers")
+    for kind in ("confirmed", "different part", "different colour", "element_id unknown"):
         print(f"  {kind}: {len(outcomes[kind])}")
         for eid, design, colour, official, req_ids in outcomes[kind]:
             print(f"    {eid:<9} label {design + ' / ' + colour:<28} official {official or '-':<28} requests: {', '.join(req_ids)}")
+    unknown = outcomes["element_id unknown"]
+    if unknown:
+        print()
+        print("FOR THE LABEL OWNER (whoever cut the ground-truth set): these element IDs do not exist in")
+        print("Rebrickable's element table, so no remap can fix them; please supply the correct element IDs:")
+        for eid, design, colour, _, req_ids in unknown:
+            print(f"  {eid}  (labelled {design} / {colour}; requests {', '.join(req_ids)})")
 
 
 class Tee:

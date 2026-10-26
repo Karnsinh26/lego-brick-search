@@ -170,6 +170,37 @@ Mapping attempt (evidence, not scored): each label's design number + colour look
 
 Element-table check (evidence, not scored): each answer ID looked up in Rebrickable's full element table
   confirmed: 29  |  different part: 29  |  different colour: 5  |  element_id unknown: 8
+  total accounted for: 71 of 71 distinct answers
+  confirmed: 29
+    300126    label 3001 / Black                 official 3001 / Black                 requests: REQ-0061
+    302301    label 3023 / White                 official 3023 / White                 requests: REQ-0063
+    302326    label 3023 / Black                 official 3023 / Black                 requests: REQ-0045, REQ-0079
+    302426    label 3024 / Black                 official 3024 / Black                 requests: REQ-0033
+    306801    label 3068b / White                official 3068b / White                requests: REQ-0084
+    306926    label 3069b / Black                official 3069b / Black                requests: REQ-0011
+    307026    label 3070b / Black                official 3070b / Black                requests: REQ-0092
+    4121715   label 2780 / Black                 official 2780 / Black                 requests: REQ-0009, REQ-0083
+    4159553   label 3024 / Tan                   official 3024 / Tan                   requests: REQ-0066
+    4210631   label 2412b / Dark Bluish Gray     official 2412b / Dark Bluish Gray     requests: REQ-0035, REQ-0089
+    4210719   label 3024 / Dark Bluish Gray      official 3024 / Dark Bluish Gray      requests: REQ-0030
+    4211063   label 3023 / Dark Bluish Gray      official 3023 / Dark Bluish Gray      requests: REQ-0003, REQ-0071
+    4211389   label 3005 / Light Bluish Gray     official 3005 / Light Bluish Gray     requests: REQ-0031, REQ-0057
+    4211397   label 3022 / Light Bluish Gray     official 3022 / Light Bluish Gray     requests: REQ-0093
+    4211398   label 3023 / Light Bluish Gray     official 3023 / Light Bluish Gray     requests: REQ-0013, REQ-0025, REQ-0053, REQ-0096
+    4211399   label 3024 / Light Bluish Gray     official 3024 / Light Bluish Gray     requests: REQ-0082, REQ-0087
+    4211413   label 3068b / Light Bluish Gray    official 3068b / Light Bluish Gray    requests: REQ-0080
+    4211414   label 3069b / Light Bluish Gray    official 3069b / Light Bluish Gray    requests: REQ-0064, REQ-0070
+    4211415   label 3070b / Light Bluish Gray    official 3070b / Light Bluish Gray    requests: REQ-0026, REQ-0091
+    4211429   label 3623 / Light Bluish Gray     official 3623 / Light Bluish Gray     requests: REQ-0042
+    4211445   label 3710 / Light Bluish Gray     official 3710 / Light Bluish Gray     requests: REQ-0076
+    4211452   label 3795 / Light Bluish Gray     official 3795 / Light Bluish Gray     requests: REQ-0055
+    4211481   label 4162 / Light Bluish Gray     official 4162 / Light Bluish Gray     requests: REQ-0017, REQ-0088
+    4211483   label 4274 / Light Bluish Gray     official 4274 / Light Bluish Gray     requests: REQ-0032
+    4211628   label 30374 / Light Bluish Gray    official 30374 / Light Bluish Gray    requests: REQ-0049
+    4211807   label 3673 / Light Bluish Gray     official 3673 / Light Bluish Gray     requests: REQ-0056
+    4514553   label 6558 / Blue                  official 6558 / Blue                  requests: REQ-0016
+    4558169   label 63864 / Light Bluish Gray    official 63864 / Light Bluish Gray    requests: REQ-0059
+    4650260   label 98138 / Light Bluish Gray    official 98138 / Light Bluish Gray    requests: REQ-0075
   different part: 29
     3005740   label 4073 / Trans-Clear           official 6141 / Trans-Clear           requests: REQ-0019, REQ-0095
     4114306   label 3023 / Tan                   official 3003 / Tan                   requests: REQ-0097
@@ -215,6 +246,17 @@ Element-table check (evidence, not scored): each answer ID looked up in Rebricka
     6013027   label 99781 / Light Bluish Gray    official -                            requests: REQ-0023
     6028182   label 4073 / Trans-Light Blue      official -                            requests: REQ-0006
     6047216   label 15068 / Light Bluish Gray    official -                            requests: REQ-0029, REQ-0094
+
+FOR THE LABEL OWNER (whoever cut the ground-truth set): these element IDs do not exist in
+Rebrickable's element table, so no remap can fix them; please supply the correct element IDs:
+  3006247  (labelled 3062b / Trans-Clear; requests REQ-0074)
+  4211417  (labelled 2431 / Light Bluish Gray; requests REQ-0018)
+  4211446  (labelled 2420 / Light Bluish Gray; requests REQ-0024)
+  4211459  (labelled 32028 / Light Bluish Gray; requests REQ-0048)
+  4211579  (labelled 43722 / Light Bluish Gray; requests REQ-0073)
+  6013027  (labelled 99781 / Light Bluish Gray; requests REQ-0023)
+  6028182  (labelled 4073 / Trans-Light Blue; requests REQ-0006)
+  6047216  (labelled 15068 / Light Bluish Gray; requests REQ-0029, REQ-0094)
 
 MISSING INPUT: the parts export the labels were built against is not in the task resources
 (meeting notes, the ground-truth dataset and the Stage 1 parts list were all checked), and its
