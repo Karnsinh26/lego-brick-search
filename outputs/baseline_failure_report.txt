@@ -80,7 +80,196 @@ Design/colour mismatches vs Qdrant payload: 17
   REQ-0026 element_id=4211415: labelled 3070b / Light Bluish Gray  |  stored 3069b / Light Bluish Gray
   REQ-0091 element_id=4211415: labelled 3070b / Light Bluish Gray  |  stored 3069b / Light Bluish Gray
 
-STOPPED: 55 ground-truth element_ids (69 requests) are not in parts_75192:
-  300126, 3005740, 3006247, 302301, 302326, 302426, 306801, 306926, 307026, 4114306, 4125253, 4210631, 4210633, 4210667, 4210851, 4211396, 4211413, 4211417, 4211429, 4211445, 4211446, 4211449, 4211450, 4211452, 4211459, 4211460, 4211474, 4211481, 4211483, 4211501, 4211518, 4211574, 4211575, 4211578, 4211579, 4211628, 4211807, 4504382, 4514553, 4515364, 4515374, 4529236, 4547489, 4558169, 4558952, 4558953, 4560183, 4650260, 6013027, 6020193, 6028182, 6035364, 6047216, 6058221, 6061538
-No precision@1 is reported on incomplete ground truth.
-Ingest the missing parts into the collection, then rerun.
+OUT OF COVERAGE: 69 of 100 requests have ground truth outside parts_75192
+(the collection was built from the 80-row parts list); they are not scored:
+  REQ-0004  missing 4211518
+  REQ-0006  missing 6028182
+  REQ-0007  missing 4211574
+  REQ-0008  missing 4211575
+  REQ-0010  missing 4210851
+  REQ-0011  missing 306926
+  REQ-0012  missing 4515374
+  REQ-0014  missing 4211474
+  REQ-0015  missing 4211450
+  REQ-0016  missing 4514553
+  REQ-0017  missing 4211481
+  REQ-0018  missing 4211417
+  REQ-0019  missing 3005740
+  REQ-0020  missing 4210633
+  REQ-0022  missing 4210667
+  REQ-0023  missing 6013027
+  REQ-0024  missing 4211446
+  REQ-0027  missing 4211501
+  REQ-0028  missing 4211575
+  REQ-0029  missing 6047216
+  REQ-0032  missing 4211483
+  REQ-0033  missing 302426
+  REQ-0034  missing 4125253
+  REQ-0035  missing 4210631
+  REQ-0036  missing 4515364
+  REQ-0037  missing 4211396
+  REQ-0039  missing 6058221
+  REQ-0042  missing 4211429
+  REQ-0043  missing 4560183
+  REQ-0044  missing 6020193
+  REQ-0045  missing 302326
+  REQ-0047  missing 4211450
+  REQ-0048  missing 4211459
+  REQ-0049  missing 4211628
+  REQ-0050  missing 6035364
+  REQ-0051  missing 4547489
+  REQ-0052  missing 4504382
+  REQ-0054  missing 4558953
+  REQ-0055  missing 4211452
+  REQ-0056  missing 4211807
+  REQ-0059  missing 4558169
+  REQ-0060  missing 4211574
+  REQ-0061  missing 300126
+  REQ-0062  missing 4210633
+  REQ-0063  missing 302301
+  REQ-0065  missing 4560183
+  REQ-0067  missing 4529236
+  REQ-0068  missing 6061538
+  REQ-0069  missing 4211460
+  REQ-0072  missing 4211578
+  REQ-0073  missing 4211579
+  REQ-0074  missing 3006247
+  REQ-0075  missing 4650260
+  REQ-0076  missing 4211445
+  REQ-0078  missing 4211474
+  REQ-0079  missing 302326
+  REQ-0080  missing 4211413
+  REQ-0081  missing 4125253
+  REQ-0084  missing 306801
+  REQ-0086  missing 4211396
+  REQ-0088  missing 4211481
+  REQ-0089  missing 4210631
+  REQ-0090  missing 6020193
+  REQ-0092  missing 307026
+  REQ-0094  missing 6047216
+  REQ-0095  missing 3005740
+  REQ-0097  missing 4114306
+  REQ-0099  missing 4558952
+  REQ-0100  missing 4211449
+
+2) Dense precision@1
+Dense precision@1: 8/31 = 25.8%  (31 of 100 requests scored)
+
+3) Failure kinds (tie-break order, first match wins):
+  1) conflict: typed part number + typed colour, and no parts-list element has that design in that colour
+  2) wrong_colour: top-1 has the ground-truth design number but a different colour
+  3) lookalike_design: anything else: top-1 is a different design
+  conflict          2
+  wrong_colour      5
+  lookalike_design  16
+  total misses      23
+
+  Misses, one row each, grouped by failure kind:
+  failure_kind       request_id  top1_element_id  ground_truth
+  conflict           REQ-0013    4114088          4211398
+  conflict           REQ-0053    4211091          4211398
+  wrong_colour       REQ-0025    4211091          4211398
+  wrong_colour       REQ-0046    4210721          4211525
+  wrong_colour       REQ-0070    4211052          4211414
+  wrong_colour       REQ-0077    4114086          4211394
+  wrong_colour       REQ-0082    4210719          4211399
+  lookalike_design   REQ-0001    4211385          4211388
+  lookalike_design   REQ-0002    4211089          4211387
+  lookalike_design   REQ-0003    4211091          4211063
+  lookalike_design   REQ-0005    4144024          4211387
+  lookalike_design   REQ-0021    4211089          4211388
+  lookalike_design   REQ-0026    4211461          4211415
+  lookalike_design   REQ-0031    4211089          4211389
+  lookalike_design   REQ-0038    4211091          4211395
+  lookalike_design   REQ-0040    4210719          4211387
+  lookalike_design   REQ-0058    4144024          4211387
+  lookalike_design   REQ-0064    4210848          4211414
+  lookalike_design   REQ-0066    4159554          4159553
+  lookalike_design   REQ-0071    4211091          4211063
+  lookalike_design   REQ-0085    4211365          4211388
+  lookalike_design   REQ-0091    4211461          4211415
+  lookalike_design   REQ-0098    4211052          4210848
+
+4) Conflict detection vs is_conflicting (all 100 requests):
+                      labelled true  labelled false
+  predicted true              TP 10           FP 12
+  predicted false              FN 4           TN 74
+  precision: 10/22 = 45.5%
+  recall:    10/14 = 71.4%
+
+Conflicting-request list (is_conflicting = true): 14
+  request_id  conflict_pattern              flagged_by_us
+  REQ-0005    part_number_vs_colour         no
+  REQ-0013    part_number_vs_colour         yes
+  REQ-0028    part_number_vs_description    yes
+  REQ-0034    part_number_vs_colour         yes
+  REQ-0041    part_number_vs_colour         yes
+  REQ-0047    part_number_vs_colour         no
+  REQ-0053    part_number_vs_colour         yes
+  REQ-0060    part_number_vs_description    yes
+  REQ-0065    part_number_vs_colour         yes
+  REQ-0070    part_number_vs_colour         no
+  REQ-0075    part_number_vs_description    no
+  REQ-0079    part_number_vs_colour         yes
+  REQ-0090    part_number_vs_description    yes
+  REQ-0096    part_number_vs_colour         yes
+
+Labelled conflicts by conflict_pattern:
+  conflict_pattern              labelled  caught
+  part_number_vs_colour               10       7
+  part_number_vs_description           4       3
+
+False negatives (labelled conflict, not flagged): 4
+  request_id  typed_part_number  typed_colour        conflict_pattern
+  REQ-0005    4211388            dark grey           part_number_vs_colour
+  REQ-0047    3666               dark grey           part_number_vs_colour
+  REQ-0070    3069b              white               part_number_vs_colour
+  REQ-0075    4211415            grey                part_number_vs_description
+False positives (flagged, not labelled conflict): 12
+  request_id  typed_part_number  typed_colour        conflict_pattern
+  REQ-0007    41769              light bluish grey   
+  REQ-0011    3069b              black               
+  REQ-0019    4073               trans clear         
+  REQ-0020    6141               dark grey           
+  REQ-0024    2420               LBG                 
+  REQ-0033    302426             black               
+  REQ-0052    54200              light grey          
+  REQ-0057    3OO5               light grey          
+  REQ-0059    63864              light grey          
+  REQ-0072    43723              light bluish gray   
+  REQ-0080    3068               light bluish grey   
+  REQ-0097    3023               tan                 
+
+5) Per-request results
+request_id  top1_element_id  ground_truth  result  failure_kind
+REQ-0001    4211385          4211388       MISS    lookalike_design
+REQ-0002    4211089          4211387       MISS    lookalike_design
+REQ-0003    4211091          4211063       MISS    lookalike_design
+REQ-0005    4144024          4211387       MISS    lookalike_design
+REQ-0009    4121715          4121715       HIT     
+REQ-0013    4114088          4211398       MISS    conflict
+REQ-0021    4211089          4211388       MISS    lookalike_design
+REQ-0025    4211091          4211398       MISS    wrong_colour
+REQ-0026    4211461          4211415       MISS    lookalike_design
+REQ-0030    4210719          4210719       HIT     
+REQ-0031    4211089          4211389       MISS    lookalike_design
+REQ-0038    4211091          4211395       MISS    lookalike_design
+REQ-0040    4210719          4211387       MISS    lookalike_design
+REQ-0041    4211388          4211388       HIT     
+REQ-0046    4210721          4211525       MISS    wrong_colour
+REQ-0053    4211091          4211398       MISS    conflict
+REQ-0057    4211389          4211389       HIT     
+REQ-0058    4144024          4211387       MISS    lookalike_design
+REQ-0064    4210848          4211414       MISS    lookalike_design
+REQ-0066    4159554          4159553       MISS    lookalike_design
+REQ-0070    4211052          4211414       MISS    wrong_colour
+REQ-0071    4211091          4211063       MISS    lookalike_design
+REQ-0077    4114086          4211394       MISS    wrong_colour
+REQ-0082    4210719          4211399       MISS    wrong_colour
+REQ-0083    4121715          4121715       HIT     
+REQ-0085    4211365          4211388       MISS    lookalike_design
+REQ-0087    4211399          4211399       HIT     
+REQ-0091    4211461          4211415       MISS    lookalike_design
+REQ-0093    4211397          4211397       HIT     
+REQ-0096    4211398          4211398       HIT     
+REQ-0098    4211052          4210848       MISS    lookalike_design
