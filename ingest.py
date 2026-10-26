@@ -60,8 +60,7 @@ def main():
     client.upsert(COLLECTION, points=points)
 
     point_count = client.count(COLLECTION, exact=True).count
-    print(f"Qdrant points:        {point_count}")
-    print(f"Distinct element_ids: {len(element_ids)}")
+    print(f"Qdrant points: {point_count}  |  Distinct element_ids in CSV: {len(element_ids)}")
     print("Counts match" if point_count == len(element_ids) else "COUNTS DO NOT MATCH")
 
 

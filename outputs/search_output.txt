@@ -1,10 +1,7 @@
 Query: 'set 75192 dark grey piece 3023'
-Target: 4211091 (Dark Bluish Gray, design 3023)
-1. 4211091  3023   Dark Bluish Gray   score=0.8033
-2. 4211063  3022   Dark Bluish Gray   score=0.7979
-3. 4211398  3023   Light Bluish Gray  score=0.7846
-4. 4211065  3020   Dark Bluish Gray   score=0.7797
-5. 4211397  3022   Light Bluish Gray  score=0.7796
-Top result right colour (Dark Bluish Gray)? YES
-Top result exact target part? YES
-Target rank in top 5: 1
+1. element_id=4211091  design_number=3023  colour_name=Dark Bluish Gray
+2. element_id=4211063  design_number=3022  colour_name=Dark Bluish Gray
+3. element_id=4211398  design_number=3023  colour_name=Light Bluish Gray
+4. element_id=4211065  design_number=3020  colour_name=Dark Bluish Gray
+5. element_id=4211397  design_number=3022  colour_name=Light Bluish Gray
+Verdict: top result is Dark Bluish Gray -> RIGHT colour (want Dark Bluish Gray)

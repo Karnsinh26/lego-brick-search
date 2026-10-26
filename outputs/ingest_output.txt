@@ -1,4 +1,3 @@
 Embedded 80 part descriptions
-Qdrant points:        80
-Distinct element_ids: 80
+Qdrant points: 80  |  Distinct element_ids in CSV: 80
 Counts match
