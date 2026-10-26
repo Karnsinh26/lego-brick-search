@@ -202,6 +202,15 @@ def print_report(requests, payloads, parts):
     else:
         print("Design/colour mismatches vs Qdrant payload: none")
 
+    if missing:
+        n_reqs = sum(len(truths[eid]) for eid in missing)
+        print()
+        print(f"STOPPED: {len(missing)} ground-truth element_ids ({n_reqs} requests) are not in {COLLECTION}:")
+        print("  " + ", ".join(missing))
+        print("No precision@1 is reported on incomplete ground truth.")
+        print("Ingest the missing parts into the collection, then rerun.")
+        return False
+
     print()
     print("2) Dense precision@1")
     print(f"Dense precision@1: {hits}/{len(rows)} = {hits / len(rows):.1%}")
@@ -213,6 +222,13 @@ def print_report(requests, payloads, parts):
     for kind, _ in FAILURE_KINDS:
         print(f"  {kind:<17} {sum(row[4] == kind for row in rows)}")
     print(f"  {'total misses':<17} {len(rows) - hits}")
+    print()
+    print("  Misses, one row each, grouped by failure kind:")
+    print(f"  {'failure_kind':<17}  {'request_id':<10}  {'top1_element_id':<15}  ground_truth")
+    for kind, _ in FAILURE_KINDS:
+        for req_id, top1, truth, hit, row_kind in rows:
+            if not hit and row_kind == kind:
+                print(f"  {kind:<17}  {req_id:<10}  {top1:<15}  {truth}")
 
     tp, fp, fn, tn = counts["tp"], counts["fp"], counts["fn"], counts["tn"]
     print()
@@ -252,7 +268,9 @@ def main():
     payloads = load_collection_payloads(client)
     parts = load_parts(PARTS_PATH)
     with open(REPORT_PATH, "w", encoding="utf-8") as report, contextlib.redirect_stdout(Tee(sys.stdout, report)):
-        print_report(requests, payloads, parts)
+        complete = print_report(requests, payloads, parts)
+    if complete is False:
+        sys.exit(1)
 
 
 if __name__ == "__main__":
