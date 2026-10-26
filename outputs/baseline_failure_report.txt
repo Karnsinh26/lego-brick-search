@@ -1,0 +1,229 @@
+Dense baseline failure report
+
+1) Ground-truth check
+Requests loaded: 100
+Points in parts_75192: 80
+Distinct ground-truth element_ids: 71
+Found in collection: 16 / 71
+Missing from collection:
+  300126  (requests: REQ-0061)
+  3005740  (requests: REQ-0019, REQ-0095)
+  3006247  (requests: REQ-0074)
+  302301  (requests: REQ-0063)
+  302326  (requests: REQ-0045, REQ-0079)
+  302426  (requests: REQ-0033)
+  306801  (requests: REQ-0084)
+  306926  (requests: REQ-0011)
+  307026  (requests: REQ-0092)
+  4114306  (requests: REQ-0097)
+  4125253  (requests: REQ-0034, REQ-0081)
+  4210631  (requests: REQ-0035, REQ-0089)
+  4210633  (requests: REQ-0020, REQ-0062)
+  4210667  (requests: REQ-0022)
+  4210851  (requests: REQ-0010)
+  4211396  (requests: REQ-0037, REQ-0086)
+  4211413  (requests: REQ-0080)
+  4211417  (requests: REQ-0018)
+  4211429  (requests: REQ-0042)
+  4211445  (requests: REQ-0076)
+  4211446  (requests: REQ-0024)
+  4211449  (requests: REQ-0100)
+  4211450  (requests: REQ-0015, REQ-0047)
+  4211452  (requests: REQ-0055)
+  4211459  (requests: REQ-0048)
+  4211460  (requests: REQ-0069)
+  4211474  (requests: REQ-0014, REQ-0078)
+  4211481  (requests: REQ-0017, REQ-0088)
+  4211483  (requests: REQ-0032)
+  4211501  (requests: REQ-0027)
+  4211518  (requests: REQ-0004)
+  4211574  (requests: REQ-0007, REQ-0060)
+  4211575  (requests: REQ-0008, REQ-0028)
+  4211578  (requests: REQ-0072)
+  4211579  (requests: REQ-0073)
+  4211628  (requests: REQ-0049)
+  4211807  (requests: REQ-0056)
+  4504382  (requests: REQ-0052)
+  4514553  (requests: REQ-0016)
+  4515364  (requests: REQ-0036)
+  4515374  (requests: REQ-0012)
+  4529236  (requests: REQ-0067)
+  4547489  (requests: REQ-0051)
+  4558169  (requests: REQ-0059)
+  4558952  (requests: REQ-0099)
+  4558953  (requests: REQ-0054)
+  4560183  (requests: REQ-0043, REQ-0065)
+  4650260  (requests: REQ-0075)
+  6013027  (requests: REQ-0023)
+  6020193  (requests: REQ-0044, REQ-0090)
+  6028182  (requests: REQ-0006)
+  6035364  (requests: REQ-0050)
+  6047216  (requests: REQ-0029, REQ-0094)
+  6058221  (requests: REQ-0039)
+  6061538  (requests: REQ-0068)
+Design/colour mismatches vs Qdrant payload: 17
+  REQ-0066 element_id=4159553: labelled 3024 / Tan  |  stored 3005 / Tan
+  REQ-0098 element_id=4210848: labelled 3069b / Dark Bluish Gray  |  stored 3070b / Dark Bluish Gray
+  REQ-0003 element_id=4211063: labelled 3023 / Dark Bluish Gray  |  stored 3022 / Dark Bluish Gray
+  REQ-0071 element_id=4211063: labelled 3023 / Dark Bluish Gray  |  stored 3022 / Dark Bluish Gray
+  REQ-0002 element_id=4211387: labelled 3001 / Dark Bluish Gray  |  stored 3001 / Light Bluish Gray
+  REQ-0005 element_id=4211387: labelled 3001 / Dark Bluish Gray  |  stored 3001 / Light Bluish Gray
+  REQ-0040 element_id=4211387: labelled 3001 / Dark Bluish Gray  |  stored 3001 / Light Bluish Gray
+  REQ-0058 element_id=4211387: labelled 3001 / Dark Bluish Gray  |  stored 3001 / Light Bluish Gray
+  REQ-0001 element_id=4211388: labelled 3001 / Light Bluish Gray  |  stored 3001 / Dark Bluish Gray
+  REQ-0021 element_id=4211388: labelled 3001 / Light Bluish Gray  |  stored 3001 / Dark Bluish Gray
+  REQ-0041 element_id=4211388: labelled 3001 / Light Bluish Gray  |  stored 3001 / Dark Bluish Gray
+  REQ-0085 element_id=4211388: labelled 3001 / Light Bluish Gray  |  stored 3001 / Dark Bluish Gray
+  REQ-0077 element_id=4211394: labelled 3004 / Light Bluish Gray  |  stored 3020 / Light Bluish Gray
+  REQ-0064 element_id=4211414: labelled 3069b / Light Bluish Gray  |  stored 3070b / Light Bluish Gray
+  REQ-0070 element_id=4211414: labelled 3069b / Light Bluish Gray  |  stored 3070b / Light Bluish Gray
+  REQ-0026 element_id=4211415: labelled 3070b / Light Bluish Gray  |  stored 3069b / Light Bluish Gray
+  REQ-0091 element_id=4211415: labelled 3070b / Light Bluish Gray  |  stored 3069b / Light Bluish Gray
+
+2) Dense precision@1
+Dense precision@1: 8/100 = 8.0%
+
+3) Failure kinds (tie-break order, first match wins):
+  1) conflict: typed part number + typed colour, and no parts-list element has that design in that colour
+  2) wrong_colour: top-1 has the ground-truth design number but a different colour
+  3) lookalike_design: anything else: top-1 is a different design
+  conflict          19
+  wrong_colour      16
+  lookalike_design  57
+  total misses      92
+
+4) Conflict detection vs is_conflicting (all 100 requests):
+                      labelled true  labelled false
+  predicted true              TP 10           FP 12
+  predicted false              FN 4           TN 74
+  precision: 10/22 = 45.5%
+  recall:    10/14 = 71.4%
+
+Labelled conflicts by conflict_pattern:
+  conflict_pattern              labelled  caught
+  part_number_vs_colour               10       7
+  part_number_vs_description           4       3
+
+False negatives (labelled conflict, not flagged): 4
+  request_id  typed_part_number  typed_colour        conflict_pattern
+  REQ-0005    4211388            dark grey           part_number_vs_colour
+  REQ-0047    3666               dark grey           part_number_vs_colour
+  REQ-0070    3069b              white               part_number_vs_colour
+  REQ-0075    4211415            grey                part_number_vs_description
+False positives (flagged, not labelled conflict): 12
+  request_id  typed_part_number  typed_colour        conflict_pattern
+  REQ-0007    41769              light bluish grey   
+  REQ-0011    3069b              black               
+  REQ-0019    4073               trans clear         
+  REQ-0020    6141               dark grey           
+  REQ-0024    2420               LBG                 
+  REQ-0033    302426             black               
+  REQ-0052    54200              light grey          
+  REQ-0057    3OO5               light grey          
+  REQ-0059    63864              light grey          
+  REQ-0072    43723              light bluish gray   
+  REQ-0080    3068               light bluish grey   
+  REQ-0097    3023               tan                 
+
+5) Per-request results
+request_id  top1_element_id  ground_truth  result  failure_kind
+REQ-0001    4211385          4211388       MISS    lookalike_design
+REQ-0002    4211089          4211387       MISS    lookalike_design
+REQ-0003    4211091          4211063       MISS    lookalike_design
+REQ-0004    4211087          4211518       MISS    lookalike_design
+REQ-0005    4144024          4211387       MISS    lookalike_design
+REQ-0006    4211525          6028182       MISS    wrong_colour
+REQ-0007    4211394          4211574       MISS    conflict
+REQ-0008    4210719          4211575       MISS    lookalike_design
+REQ-0009    4121715          4121715       HIT     
+REQ-0010    4211461          4210851       MISS    lookalike_design
+REQ-0011    4211052          306926        MISS    conflict
+REQ-0012    4211059          4515374       MISS    lookalike_design
+REQ-0013    4114088          4211398       MISS    conflict
+REQ-0014    4211389          4211474       MISS    lookalike_design
+REQ-0015    4211076          4211450       MISS    wrong_colour
+REQ-0016    4121715          4514553       MISS    lookalike_design
+REQ-0017    4211461          4211481       MISS    lookalike_design
+REQ-0018    4210848          4211417       MISS    lookalike_design
+REQ-0019    4648236          3005740       MISS    conflict
+REQ-0020    4210721          4210633       MISS    conflict
+REQ-0021    4211089          4211388       MISS    lookalike_design
+REQ-0022    4211083          4210667       MISS    lookalike_design
+REQ-0023    6047235          6013027       MISS    lookalike_design
+REQ-0024    4114088          4211446       MISS    conflict
+REQ-0025    4211091          4211398       MISS    wrong_colour
+REQ-0026    4211461          4211415       MISS    lookalike_design
+REQ-0027    4211366          4211501       MISS    lookalike_design
+REQ-0028    4211076          4211575       MISS    conflict
+REQ-0029    4211411          6047216       MISS    lookalike_design
+REQ-0030    4210719          4210719       HIT     
+REQ-0031    4211089          4211389       MISS    lookalike_design
+REQ-0032    4121715          4211483       MISS    lookalike_design
+REQ-0033    4114088          302426        MISS    conflict
+REQ-0034    4618432          4125253       MISS    conflict
+REQ-0035    4211046          4210631       MISS    lookalike_design
+REQ-0036    4519423          4515364       MISS    wrong_colour
+REQ-0037    4211394          4211396       MISS    lookalike_design
+REQ-0038    4211091          4211395       MISS    lookalike_design
+REQ-0039    6134498          6058221       MISS    wrong_colour
+REQ-0040    4210719          4211387       MISS    lookalike_design
+REQ-0041    4211388          4211388       HIT     
+REQ-0042    4211428          4211429       MISS    lookalike_design
+REQ-0043    4560182          4560183       MISS    wrong_colour
+REQ-0044    4211089          6020193       MISS    lookalike_design
+REQ-0045    4114088          302326        MISS    lookalike_design
+REQ-0046    4210721          4211525       MISS    wrong_colour
+REQ-0047    4211076          4211450       MISS    wrong_colour
+REQ-0048    4211091          4211459       MISS    lookalike_design
+REQ-0049    6029156          4211628       MISS    lookalike_design
+REQ-0050    4568291          6035364       MISS    lookalike_design
+REQ-0051    4211058          4547489       MISS    lookalike_design
+REQ-0052    4211411          4504382       MISS    conflict
+REQ-0053    4211091          4211398       MISS    conflict
+REQ-0054    4211067          4558953       MISS    lookalike_design
+REQ-0055    4211444          4211452       MISS    lookalike_design
+REQ-0056    4121715          4211807       MISS    lookalike_design
+REQ-0057    4211389          4211389       HIT     
+REQ-0058    4144024          4211387       MISS    lookalike_design
+REQ-0059    4211461          4558169       MISS    conflict
+REQ-0060    4210721          4211574       MISS    conflict
+REQ-0061    4114086          300126        MISS    lookalike_design
+REQ-0062    4210721          4210633       MISS    lookalike_design
+REQ-0063    4211091          302301        MISS    wrong_colour
+REQ-0064    4210848          4211414       MISS    lookalike_design
+REQ-0065    6097395          4560183       MISS    conflict
+REQ-0066    4159554          4159553       MISS    lookalike_design
+REQ-0067    4210848          4529236       MISS    lookalike_design
+REQ-0068    4211411          6061538       MISS    lookalike_design
+REQ-0069    4211442          4211460       MISS    lookalike_design
+REQ-0070    4211052          4211414       MISS    wrong_colour
+REQ-0071    4211091          4211063       MISS    lookalike_design
+REQ-0072    4211428          4211578       MISS    conflict
+REQ-0073    4210721          4211579       MISS    lookalike_design
+REQ-0074    6134498          3006247       MISS    lookalike_design
+REQ-0075    4210848          4650260       MISS    lookalike_design
+REQ-0076    4210719          4211445       MISS    lookalike_design
+REQ-0077    4114086          4211394       MISS    wrong_colour
+REQ-0078    4144024          4211474       MISS    lookalike_design
+REQ-0079    4211091          302326        MISS    conflict
+REQ-0080    4211432          4211413       MISS    conflict
+REQ-0081    4211052          4125253       MISS    wrong_colour
+REQ-0082    4210719          4211399       MISS    wrong_colour
+REQ-0083    4121715          4121715       HIT     
+REQ-0084    4618432          306801        MISS    lookalike_design
+REQ-0085    4211365          4211388       MISS    lookalike_design
+REQ-0086    4211065          4211396       MISS    wrong_colour
+REQ-0087    4211399          4211399       HIT     
+REQ-0088    4210719          4211481       MISS    lookalike_design
+REQ-0089    4211087          4210631       MISS    lookalike_design
+REQ-0090    4211089          6020193       MISS    conflict
+REQ-0091    4211461          4211415       MISS    lookalike_design
+REQ-0092    4210848          307026        MISS    wrong_colour
+REQ-0093    4211397          4211397       HIT     
+REQ-0094    4211063          6047216       MISS    lookalike_design
+REQ-0095    4211525          3005740       MISS    wrong_colour
+REQ-0096    4211398          4211398       HIT     
+REQ-0097    4159554          4114306       MISS    conflict
+REQ-0098    4211052          4210848       MISS    lookalike_design
+REQ-0099    4211067          4558952       MISS    lookalike_design
+REQ-0100    4211389          4211449       MISS    lookalike_design
