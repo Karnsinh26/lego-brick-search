@@ -40,8 +40,12 @@ TYPED_COLOURS = {
 FAILURE_KINDS = [
     ("conflict", "typed part number + typed colour, and no parts-list element has that design in that colour"),
     ("wrong_colour", "top-1 has the ground-truth design number but a different colour"),
-    ("lookalike_design", "anything else: top-1 is a different design"),
+    ("lookalike_design", "top-1 has a different design number from the ground truth"),
 ]
+
+
+class UnclassifiedMiss(Exception):
+    """A miss that matches none of the failure kinds; the rule needs a new kind, not a guess."""
 
 
 def load_requests(path):
@@ -73,9 +77,16 @@ def is_conflict(request, parts):
 def failure_kind(request, top1_design, top1_colour, parts):
     if is_conflict(request, parts):
         return "conflict"
-    if top1_design == request["ground_truth_design_number"].strip() and top1_colour != request["ground_truth_colour_name"].strip():
+    truth_design = request["ground_truth_design_number"].strip()
+    truth_colour = request["ground_truth_colour_name"].strip()
+    if top1_design == truth_design and top1_colour != truth_colour:
         return "wrong_colour"
-    return "lookalike_design"
+    if top1_design != truth_design:
+        return "lookalike_design"
+    raise UnclassifiedMiss(
+        f"{request['request_id']}: top-1 matches the ground-truth design {truth_design} and colour "
+        f"{truth_colour} but is a different element_id; no failure kind covers this"
+    )
 
 
 def load_collection_payloads(client):
@@ -178,8 +189,6 @@ class Tee:
 
 def print_report(requests, payloads, parts):
     truths, missing, mismatches = check_ground_truth(requests, payloads)
-    hits, rows = precision_at_1(requests, parts)
-    counts, false_negatives, false_positives, patterns = conflict_detection(requests, parts)
 
     print("Dense baseline failure report")
     print()
@@ -202,19 +211,24 @@ def print_report(requests, payloads, parts):
     else:
         print("Design/colour mismatches vs Qdrant payload: none")
 
-    # Requests whose ground truth is not in the collection can never be a HIT, so they
-    # are reported as out of coverage and left out of precision@1 instead of scored as misses.
-    missing_ids = set(missing)
-    covered_ids = {r["request_id"] for r in requests if r["ground_truth_element_id"].strip() not in missing_ids}
-    out_of_coverage = [r for r in requests if r["request_id"] not in covered_ids]
-    if out_of_coverage:
+    # A failed ground-truth check means any score would stand on rows we can't trust,
+    # so stop here and say why instead of scoring what's left.
+    if missing or mismatches:
+        n_missing_reqs = sum(len(truths[eid]) for eid in missing)
         print()
-        print(f"OUT OF COVERAGE: {len(out_of_coverage)} of {len(requests)} requests have ground truth outside {COLLECTION}")
-        print("(the collection was built from the 80-row parts list); they are not scored:")
-        for r in out_of_coverage:
-            print(f"  {r['request_id']}  missing {r['ground_truth_element_id']}")
-    rows = [row for row in rows if row[0] in covered_ids]
-    hits = sum(row[3] for row in rows)
+        print("STOPPED: ground truth does not resolve, so nothing is scored.")
+        if missing:
+            print(f"  {len(missing)} answer IDs ({n_missing_reqs} requests) are not in {COLLECTION}: the collection")
+            print("  was built from the 80-row parts list and these elements were never ingested.")
+        if mismatches:
+            print(f"  {len(mismatches)} requests contradict the stored design/colour (e.g. 4211387/4211388 greys")
+            print("  swapped, 3069b/3070b and 3022/3023 crossed); either the labels or the parts list is wrong.")
+        print("  Fix: ingest the full 75192 inventory and reconcile the contradicting labels, then rerun.")
+        return False
+
+    hits, rows = precision_at_1(requests, parts)
+    counts, false_negatives, false_positives, patterns = conflict_detection(requests, parts)
+    hit_by_request = {row[0]: row[3] for row in rows}
 
     print()
     print("2) Dense precision@1")
@@ -248,10 +262,11 @@ def print_report(requests, payloads, parts):
     print()
     conflicting = [r for r in requests if r["is_conflicting"].strip().lower() == "true"]
     print(f"Conflicting-request list (is_conflicting = true): {len(conflicting)}")
-    print(f"  {'request_id':<10}  {'conflict_pattern':<28}  flagged_by_us")
+    print(f"  {'request_id':<10}  {'conflict_pattern':<28}  {'flagged_by_us':<13}  search")
     for r in conflicting:
         flagged = "yes" if is_conflict(r, parts) else "no"
-        print(f"  {r['request_id']:<10}  {r['conflict_pattern']:<28}  {flagged}")
+        result = "HIT" if hit_by_request[r["request_id"]] else "MISS"
+        print(f"  {r['request_id']:<10}  {r['conflict_pattern']:<28}  {flagged:<13}  {result}")
     print()
     print("Labelled conflicts by conflict_pattern:")
     print(f"  {'conflict_pattern':<28}  {'labelled':>8}  {'caught':>6}")
@@ -273,7 +288,9 @@ def main():
     payloads = load_collection_payloads(client)
     parts = load_parts(PARTS_PATH)
     with open(REPORT_PATH, "w", encoding="utf-8") as report, contextlib.redirect_stdout(Tee(sys.stdout, report)):
-        print_report(requests, payloads, parts)
+        complete = print_report(requests, payloads, parts)
+    if complete is False:
+        sys.exit(1)
 
 
 if __name__ == "__main__":
