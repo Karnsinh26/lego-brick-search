@@ -225,6 +225,13 @@ def print_report(requests, payloads, parts):
     print(f"  precision: {precision}")
     print(f"  recall:    {recall}")
     print()
+    conflicting = [r for r in requests if r["is_conflicting"].strip().lower() == "true"]
+    print(f"Conflicting-request list (is_conflicting = true): {len(conflicting)}")
+    print(f"  {'request_id':<10}  {'conflict_pattern':<28}  flagged_by_us")
+    for r in conflicting:
+        flagged = "yes" if is_conflict(r, parts) else "no"
+        print(f"  {r['request_id']:<10}  {r['conflict_pattern']:<28}  {flagged}")
+    print()
     print("Labelled conflicts by conflict_pattern:")
     print(f"  {'conflict_pattern':<28}  {'labelled':>8}  {'caught':>6}")
     for pattern, (labelled, caught) in sorted(patterns.items()):

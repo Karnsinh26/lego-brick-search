@@ -99,6 +99,23 @@ Dense precision@1: 8/100 = 8.0%
   precision: 10/22 = 45.5%
   recall:    10/14 = 71.4%
 
+Conflicting-request list (is_conflicting = true): 14
+  request_id  conflict_pattern              flagged_by_us
+  REQ-0005    part_number_vs_colour         no
+  REQ-0013    part_number_vs_colour         yes
+  REQ-0028    part_number_vs_description    yes
+  REQ-0034    part_number_vs_colour         yes
+  REQ-0041    part_number_vs_colour         yes
+  REQ-0047    part_number_vs_colour         no
+  REQ-0053    part_number_vs_colour         yes
+  REQ-0060    part_number_vs_description    yes
+  REQ-0065    part_number_vs_colour         yes
+  REQ-0070    part_number_vs_colour         no
+  REQ-0075    part_number_vs_description    no
+  REQ-0079    part_number_vs_colour         yes
+  REQ-0090    part_number_vs_description    yes
+  REQ-0096    part_number_vs_colour         yes
+
 Labelled conflicts by conflict_pattern:
   conflict_pattern              labelled  caught
   part_number_vs_colour               10       7
