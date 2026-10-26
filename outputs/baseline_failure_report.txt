@@ -168,6 +168,54 @@ Mapping attempt (evidence, not scored): each label's design number + colour look
     6028182   4073 / Trans-Light Blue        requests: REQ-0006
     6058221   98138 / Trans-Light Blue       requests: REQ-0039
 
+Element-table check (evidence, not scored): each answer ID looked up in Rebrickable's full element table
+  confirmed: 29  |  different part: 29  |  different colour: 5  |  element_id unknown: 8
+  different part: 29
+    3005740   label 4073 / Trans-Clear           official 6141 / Trans-Clear           requests: REQ-0019, REQ-0095
+    4114306   label 3023 / Tan                   official 3003 / Tan                   requests: REQ-0097
+    4125253   label 3069b / Tan                  official 3070b / Tan                  requests: REQ-0034, REQ-0081
+    4210633   label 4073 / Dark Bluish Gray      official 6141 / Dark Bluish Gray      requests: REQ-0020, REQ-0062
+    4210667   label 3710 / Dark Bluish Gray      official 32140 / Dark Bluish Gray     requests: REQ-0022
+    4210848   label 3069b / Dark Bluish Gray     official 3070b / Dark Bluish Gray     requests: REQ-0098
+    4210851   label 3068b / Dark Bluish Gray     official 6536 / Dark Bluish Gray      requests: REQ-0010
+    4211387   label 3001 / Dark Bluish Gray      official 3003 / Light Bluish Gray     requests: REQ-0002, REQ-0005, REQ-0040, REQ-0058
+    4211388   label 3001 / Light Bluish Gray     official 3004 / Light Bluish Gray     requests: REQ-0001, REQ-0021, REQ-0041, REQ-0085
+    4211394   label 3004 / Light Bluish Gray     official 3010 / Light Bluish Gray     requests: REQ-0077
+    4211395   label 3021 / Light Bluish Gray     official 3020 / Light Bluish Gray     requests: REQ-0038
+    4211396   label 3020 / Light Bluish Gray     official 3021 / Light Bluish Gray     requests: REQ-0037, REQ-0086
+    4211449   label 3062b / Light Bluish Gray    official 3738 / Light Bluish Gray     requests: REQ-0100
+    4211450   label 3666 / Light Bluish Gray     official 3743 / Light Bluish Gray     requests: REQ-0015, REQ-0047
+    4211460   label 3832 / Light Bluish Gray     official 3830 / Light Bluish Gray     requests: REQ-0069
+    4211474   label 4070 / Light Bluish Gray     official 3958 / Light Bluish Gray     requests: REQ-0014, REQ-0078
+    4211501   label 30414 / Light Bluish Gray    official 4593 / Light Bluish Gray     requests: REQ-0027
+    4211518   label 2412b / Light Bluish Gray    official 6019 / Light Bluish Gray     requests: REQ-0004
+    4211525   label 4073 / Light Bluish Gray     official 6141 / Light Bluish Gray     requests: REQ-0046
+    4211574   label 41769 / Light Bluish Gray    official 32056 / Light Bluish Gray    requests: REQ-0007, REQ-0060
+    4211575   label 41770 / Light Bluish Gray    official 32126 / Light Bluish Gray    requests: REQ-0008, REQ-0028
+    4211578   label 43723 / Light Bluish Gray    official 2819 / Light Bluish Gray     requests: REQ-0072
+    4515364   label 61409 / Light Bluish Gray    official 60478 / White                requests: REQ-0036
+    4515374   label 54200 / Dark Bluish Gray     official 60481 / Light Bluish Gray    requests: REQ-0012
+    4529236   label 4589b / Dark Bluish Gray     official 59900 / Black                requests: REQ-0067
+    6020193   label 11211 / Light Bluish Gray    official 99780 / Black                requests: REQ-0044, REQ-0090
+    6035364   label 15573 / Light Bluish Gray    official 41897 / Black                requests: REQ-0050
+    6058221   label 98138 / Trans-Light Blue     official 3023 / Dark Brown            requests: REQ-0039
+    6061538   label 11477 / Light Bluish Gray    official 63965 / Black                requests: REQ-0068
+  different colour: 5
+    4504382   label 54200 / Light Bluish Gray    official 54200 / Black                requests: REQ-0052
+    4547489   label 85984 / Light Bluish Gray    official 85984 / White                requests: REQ-0051
+    4558952   label 87087 / Light Bluish Gray    official 87087 / White                requests: REQ-0099
+    4558953   label 87087 / Dark Bluish Gray     official 87087 / Light Bluish Gray    requests: REQ-0054
+    4560183   label 87079 / Dark Bluish Gray     official 87079 / Light Bluish Gray    requests: REQ-0043, REQ-0065
+  element_id unknown: 8
+    3006247   label 3062b / Trans-Clear          official -                            requests: REQ-0074
+    4211417   label 2431 / Light Bluish Gray     official -                            requests: REQ-0018
+    4211446   label 2420 / Light Bluish Gray     official -                            requests: REQ-0024
+    4211459   label 32028 / Light Bluish Gray    official -                            requests: REQ-0048
+    4211579   label 43722 / Light Bluish Gray    official -                            requests: REQ-0073
+    6013027   label 99781 / Light Bluish Gray    official -                            requests: REQ-0023
+    6028182   label 4073 / Trans-Light Blue      official -                            requests: REQ-0006
+    6047216   label 15068 / Light Bluish Gray    official -                            requests: REQ-0029, REQ-0094
+
 MISSING INPUT: the parts export the labels were built against is not in the task resources
 (meeting notes, the ground-truth dataset and the Stage 1 parts list were all checked), and its
 file name, source and date are unknown. It has been requested from whoever supplied the labelled CSV.

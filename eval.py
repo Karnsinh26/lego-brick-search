@@ -1,6 +1,7 @@
 """Eval harness for the dense baseline: validate ground truth, then measure precision@1."""
 import contextlib
 import csv
+import gzip
 import sys
 
 # search opens the local Qdrant storage at import; reuse its client (the folder allows one client per process).
@@ -212,6 +213,50 @@ def print_mapping_evidence(requests, parts):
             print(f"    {eid:<9} {design + ' / ' + colour:<30} requests: {', '.join(req_ids)}")
 
 
+def print_element_table_check(requests):
+    """Check each answer ID against Rebrickable's full element table (every LEGO element, any set).
+
+    Evidence only: it says whether the label's design + colour is what the official table records
+    for that element_id. Needs the raw dump in data/rebrickable/ (see README); skipped if absent.
+    """
+    try:
+        def read_gz(name):
+            with gzip.open(f"data/rebrickable/{name}.csv.gz", "rt", encoding="utf-8") as f:
+                return list(csv.DictReader(f))
+        elements = {e["element_id"]: e for e in read_gz("elements")}
+        colours = {c["id"]: c["name"] for c in read_gz("colors")}
+    except FileNotFoundError:
+        print()
+        print("Element-table check skipped: data/rebrickable/elements.csv.gz and colors.csv.gz not found.")
+        return
+    answers = {}
+    for r in requests:
+        key = (r["ground_truth_element_id"].strip(), r["ground_truth_design_number"].strip(),
+               r["ground_truth_colour_name"].strip())
+        answers.setdefault(key, []).append(r["request_id"])
+    outcomes = {"confirmed": [], "different part": [], "different colour": [], "element_id unknown": []}
+    for (eid, design, colour), req_ids in sorted(answers.items()):
+        e = elements.get(eid)
+        if e is None:
+            outcomes["element_id unknown"].append((eid, design, colour, "", req_ids))
+            continue
+        official = f"{e['part_num']} / {colours.get(e['color_id'], e['color_id'])}"
+        same_part = e["part_num"].rstrip("b") == design.rstrip("b")
+        if same_part and colours.get(e["color_id"]) == colour:
+            outcomes["confirmed"].append((eid, design, colour, official, req_ids))
+        elif same_part:
+            outcomes["different colour"].append((eid, design, colour, official, req_ids))
+        else:
+            outcomes["different part"].append((eid, design, colour, official, req_ids))
+    print()
+    print("Element-table check (evidence, not scored): each answer ID looked up in Rebrickable's full element table")
+    print("  " + "  |  ".join(f"{k}: {len(v)}" for k, v in outcomes.items()))
+    for kind in ("different part", "different colour", "element_id unknown"):
+        print(f"  {kind}: {len(outcomes[kind])}")
+        for eid, design, colour, official, req_ids in outcomes[kind]:
+            print(f"    {eid:<9} label {design + ' / ' + colour:<28} official {official or '-':<28} requests: {', '.join(req_ids)}")
+
+
 class Tee:
     """Write to several streams at once, so the saved report is exactly what was printed."""
 
@@ -280,6 +325,7 @@ def print_report(requests, payloads, parts):
         print("  The public Rebrickable dump disagrees with every one, so the task data and the public dump")
         print("  number elements differently. No side is named wrong until that numbering is confirmed.")
         print_mapping_evidence(requests, parts)
+        print_element_table_check(requests)
         print()
         print("MISSING INPUT: the parts export the labels were built against is not in the task resources")
         print("(meeting notes, the ground-truth dataset and the Stage 1 parts list were all checked), and its")
