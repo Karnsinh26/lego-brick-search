@@ -1,0 +1,10 @@
+Query: 'set 75192 dark grey piece 3023'
+Target: 4211091 (Dark Bluish Gray, design 3023)
+1. 4211091  3023   Dark Bluish Gray   score=0.8033
+2. 4211063  3022   Dark Bluish Gray   score=0.7979
+3. 4211398  3023   Light Bluish Gray  score=0.7846
+4. 4211065  3020   Dark Bluish Gray   score=0.7797
+5. 4211397  3022   Light Bluish Gray  score=0.7796
+Top result right colour (Dark Bluish Gray)? YES
+Top result exact target part? YES
+Target rank in top 5: 1
