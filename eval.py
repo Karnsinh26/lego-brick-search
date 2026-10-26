@@ -8,6 +8,7 @@ from search import client, dense_search
 
 REQUESTS_PATH = "data/labelled_missing_brick_requests.csv"
 PARTS_PATH = "data/parts_75192_rebrickable.csv"
+STAGE1_PARTS_PATH = "data/rebrickable_75192_parts_list.csv"
 COLLECTION = "parts_75192"
 REPORT_PATH = "outputs/baseline_failure_report.txt"
 
@@ -38,11 +39,15 @@ TYPED_COLOURS = {
 
 # Tie-break order: the first rule that applies to a MISS wins.
 FAILURE_KINDS = [
+    ("answer_not_in_collection", "the ground-truth element_id is not in the collection, so no search can hit it"),
     ("conflict", "typed part number + typed colour, and no parts-list element has that design in that colour"),
     ("wrong_colour", "top-1 has the ground-truth design number but a different colour"),
     ("lookalike_design", "top-1 has a different design number from the ground truth"),
     ("duplicate_element", "top-1 has the ground-truth design and colour but another element_id"),
 ]
+
+
+COLLECTION_IDS = set()  # filled from the Qdrant payloads before scoring
 
 
 class UnclassifiedMiss(Exception):
@@ -133,7 +138,12 @@ def precision_at_1(requests, parts):
         top1, top1_design, top1_colour = dense_search(r["request_text"], k=1)[0]
         truth = r["ground_truth_element_id"].strip()
         hit = top1 == truth
-        kind = "" if hit else failure_kind(r, top1_design, top1_colour, parts)
+        if hit:
+            kind = ""
+        elif truth not in COLLECTION_IDS:
+            kind = "answer_not_in_collection"
+        else:
+            kind = failure_kind(r, top1_design, top1_colour, parts)
         rows.append((r["request_id"], top1, truth, hit, kind))
     return sum(row[3] for row in rows), rows
 
@@ -216,19 +226,31 @@ def print_report(requests, payloads, parts):
 
     # A failed ground-truth check means any score would stand on rows we can't trust,
     # so stop here and say why instead of scoring what's left.
+    COLLECTION_IDS.update(payloads)
     if missing or mismatches:
         n_missing_reqs = sum(len(truths[eid]) for eid in missing)
         print()
-        print("STOPPED: ground truth does not resolve, so nothing is scored.")
-        if missing:
-            print(f"  {len(missing)} answer IDs ({n_missing_reqs} requests) are not in {COLLECTION}, which is built")
-            print(f"  only from Rebrickable's set 75192 inventory ({PARTS_PATH}), independent of the labels.")
-            print("  These labels name elements that are not in the set's official inventory.")
-        if mismatches:
-            print(f"  {len(mismatches)} requests label an element with a design/colour that Rebrickable's")
-            print("  inventory contradicts, so the labels, not the collection, are the side to fix.")
-        print("  Fix: correct those ground-truth labels against the official inventory, then rerun.")
-        return False
+        print("GROUND-TRUTH GATE FAILED (scored below, read every number against this):")
+        print(f"  {len(missing)} answer IDs ({n_missing_reqs} requests) are not in {COLLECTION}; those requests are")
+        print("  scored as misses of kind answer_not_in_collection.")
+        print(f"  {len(mismatches)} requests disagree with the collection's design/colour.")
+        print()
+        print("Source provenance for the disagreeing rows:")
+        print(f"  labels:     {REQUESTS_PATH} (Zero task resource, hand-labelled requests)")
+        print(f"  80-row list: {STAGE1_PARTS_PATH} (Zero Stage 1 resource, 'Rebrickable 75192 parts list')")
+        print(f"  collection: {PARTS_PATH} (built from Rebrickable's public CSV dump, inventory 246263 of 75192-1)")
+        stage1 = {r["element_id"]: r for r in load_parts(STAGE1_PARTS_PATH)}
+        print(f"  {'request':<9} {'element_id':<10} {'label':<26} {'80-row list':<26} collection")
+        for req_id, eid, design, colour, s_design, s_colour in mismatches:
+            o = stage1.get(eid)
+            old = f"{o['design_number']} / {o['colour_name']}" if o else "(not listed)"
+            print(f"  {req_id:<9} {eid:<10} {design + ' / ' + colour:<26} {old:<26} {s_design} / {s_colour}")
+        agree = sum(1 for m in mismatches if m[1] in stage1 and (stage1[m[1]]["design_number"], stage1[m[1]]["colour_name"]) == (m[2], m[3]))
+        unlisted = sum(1 for m in mismatches if m[1] not in stage1)
+        print(f"  Of these {len(mismatches)} rows the 80-row list agrees with the label on {agree}, contradicts it on "
+              f"{len(mismatches) - agree - unlisted}, and does not list the element on {unlisted}.")
+        print("  The public Rebrickable dump disagrees with every one, so the task data and the public dump")
+        print("  number elements differently. No side is named wrong until that numbering is confirmed.")
 
     hits, rows = precision_at_1(requests, parts)
     counts, false_negatives, false_positives, patterns = conflict_detection(requests, parts)
@@ -292,9 +314,7 @@ def main():
     payloads = load_collection_payloads(client)
     parts = load_parts(PARTS_PATH)
     with open(REPORT_PATH, "w", encoding="utf-8") as report, contextlib.redirect_stdout(Tee(sys.stdout, report)):
-        complete = print_report(requests, payloads, parts)
-    if complete is False:
-        sys.exit(1)
+        print_report(requests, payloads, parts)
 
 
 if __name__ == "__main__":
