@@ -185,6 +185,33 @@ def print_conflict_rows(title, rows):
         print(f"  {r['request_id']:<10}  {r['typed_part_number']:<17}  {r['typed_colour']:<18}  {r['conflict_pattern']}")
 
 
+def print_mapping_evidence(requests, parts):
+    """Try to place each label in the collection by its design number + colour alone.
+
+    Evidence only: a partial mapping is never scored, because the labels' own element IDs
+    already fail to match and a subset picked this way is not the baseline.
+    """
+    by_design_colour = {}
+    for p in parts:
+        by_design_colour.setdefault((p["design_number"], p["colour_name"]), set()).add(p["element_id"])
+    unique, ambiguous, unmatched = {}, {}, {}
+    for r in requests:
+        eid = r["ground_truth_element_id"].strip()
+        key = (r["ground_truth_design_number"].strip(), r["ground_truth_colour_name"].strip())
+        found = by_design_colour.get(key, set())
+        bucket = unique if len(found) == 1 else ambiguous if found else unmatched
+        bucket.setdefault((eid, *key), []).append(r["request_id"])
+    print()
+    print("Mapping attempt (evidence, not scored): each label's design number + colour looked up in the collection")
+    print(f"  distinct answers: {len(unique) + len(ambiguous) + len(unmatched)}  |  exactly one element: {len(unique)}"
+          f"  |  ambiguous: {len(ambiguous)}  |  no match: {len(unmatched)}")
+    for title, bucket in (("Ambiguous (several elements share that design + colour)", ambiguous),
+                          ("No match (that design + colour is not in the collection)", unmatched)):
+        print(f"  {title}: {len(bucket)}")
+        for (eid, design, colour), req_ids in sorted(bucket.items()):
+            print(f"    {eid:<9} {design + ' / ' + colour:<30} requests: {', '.join(req_ids)}")
+
+
 class Tee:
     """Write to several streams at once, so the saved report is exactly what was printed."""
 
@@ -252,6 +279,11 @@ def print_report(requests, payloads, parts):
               f"{len(mismatches) - agree - unlisted}, and does not list the element on {unlisted}.")
         print("  The public Rebrickable dump disagrees with every one, so the task data and the public dump")
         print("  number elements differently. No side is named wrong until that numbering is confirmed.")
+        print_mapping_evidence(requests, parts)
+        print()
+        print("MISSING INPUT: the parts export the labels were built against is not in the task resources")
+        print("(meeting notes, the ground-truth dataset and the Stage 1 parts list were all checked), and its")
+        print("file name, source and date are unknown. It has been requested from whoever supplied the labelled CSV.")
         print("  Rerun once the labels' source inventory is known and all 100 answer IDs resolve.")
         return False
 

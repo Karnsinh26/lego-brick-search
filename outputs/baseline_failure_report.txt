@@ -132,4 +132,43 @@ Source provenance for the disagreeing rows:
   Of these 22 rows the 80-row list agrees with the label on 1, contradicts it on 6, and does not list the element on 15.
   The public Rebrickable dump disagrees with every one, so the task data and the public dump
   number elements differently. No side is named wrong until that numbering is confirmed.
+
+Mapping attempt (evidence, not scored): each label's design number + colour looked up in the collection
+  distinct answers: 71  |  exactly one element: 41  |  ambiguous: 12  |  no match: 18
+  Ambiguous (several elements share that design + colour): 12
+    4121715   2780 / Black                   requests: REQ-0009, REQ-0083
+    4211398   3023 / Light Bluish Gray       requests: REQ-0013, REQ-0025, REQ-0053, REQ-0096
+    4211417   2431 / Light Bluish Gray       requests: REQ-0018
+    4211429   3623 / Light Bluish Gray       requests: REQ-0042
+    4211452   3795 / Light Bluish Gray       requests: REQ-0055
+    4211483   4274 / Light Bluish Gray       requests: REQ-0032
+    4211628   30374 / Light Bluish Gray      requests: REQ-0049
+    4211807   3673 / Light Bluish Gray       requests: REQ-0056
+    4504382   54200 / Light Bluish Gray      requests: REQ-0052
+    4515374   54200 / Dark Bluish Gray       requests: REQ-0012
+    4650260   98138 / Light Bluish Gray      requests: REQ-0075
+    6035364   15573 / Light Bluish Gray      requests: REQ-0050
+  No match (that design + colour is not in the collection): 18
+    3005740   4073 / Trans-Clear             requests: REQ-0019, REQ-0095
+    3006247   3062b / Trans-Clear            requests: REQ-0074
+    302301    3023 / White                   requests: REQ-0063
+    302326    3023 / Black                   requests: REQ-0045, REQ-0079
+    306801    3068b / White                  requests: REQ-0084
+    307026    3070b / Black                  requests: REQ-0092
+    4114306   3023 / Tan                     requests: REQ-0097
+    4159553   3024 / Tan                     requests: REQ-0066
+    4210633   4073 / Dark Bluish Gray        requests: REQ-0020, REQ-0062
+    4211394   3004 / Light Bluish Gray       requests: REQ-0077
+    4211449   3062b / Light Bluish Gray      requests: REQ-0100
+    4211474   4070 / Light Bluish Gray       requests: REQ-0014, REQ-0078
+    4211501   30414 / Light Bluish Gray      requests: REQ-0027
+    4211525   4073 / Light Bluish Gray       requests: REQ-0046
+    4529236   4589b / Dark Bluish Gray       requests: REQ-0067
+    4558953   87087 / Dark Bluish Gray       requests: REQ-0054
+    6028182   4073 / Trans-Light Blue        requests: REQ-0006
+    6058221   98138 / Trans-Light Blue       requests: REQ-0039
+
+MISSING INPUT: the parts export the labels were built against is not in the task resources
+(meeting notes, the ground-truth dataset and the Stage 1 parts list were all checked), and its
+file name, source and date are unknown. It has been requested from whoever supplied the labelled CSV.
   Rerun once the labels' source inventory is known and all 100 answer IDs resolve.
