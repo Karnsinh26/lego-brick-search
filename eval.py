@@ -7,7 +7,7 @@ import sys
 from search import client, dense_search
 
 REQUESTS_PATH = "data/labelled_missing_brick_requests.csv"
-PARTS_PATH = "data/parts_75192_full.csv"
+PARTS_PATH = "data/parts_75192_rebrickable.csv"
 COLLECTION = "parts_75192"
 REPORT_PATH = "outputs/baseline_failure_report.txt"
 
@@ -221,12 +221,13 @@ def print_report(requests, payloads, parts):
         print()
         print("STOPPED: ground truth does not resolve, so nothing is scored.")
         if missing:
-            print(f"  {len(missing)} answer IDs ({n_missing_reqs} requests) are not in {COLLECTION}: the collection")
-            print("  was built from the 80-row parts list and these elements were never ingested.")
+            print(f"  {len(missing)} answer IDs ({n_missing_reqs} requests) are not in {COLLECTION}, which is built")
+            print(f"  only from Rebrickable's set 75192 inventory ({PARTS_PATH}), independent of the labels.")
+            print("  These labels name elements that are not in the set's official inventory.")
         if mismatches:
-            print(f"  {len(mismatches)} requests contradict the stored design/colour (e.g. 4211387/4211388 greys")
-            print("  swapped, 3069b/3070b and 3022/3023 crossed); either the labels or the parts list is wrong.")
-        print("  Fix: ingest the full 75192 inventory and reconcile the contradicting labels, then rerun.")
+            print(f"  {len(mismatches)} requests label an element with a design/colour that Rebrickable's")
+            print("  inventory contradicts, so the labels, not the collection, are the side to fix.")
+        print("  Fix: correct those ground-truth labels against the official inventory, then rerun.")
         return False
 
     hits, rows = precision_at_1(requests, parts)

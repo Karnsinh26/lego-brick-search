@@ -6,7 +6,7 @@ from fastembed import TextEmbedding
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, PointStruct, VectorParams
 
-CSV_PATH = "data/parts_75192_full.csv"
+CSV_PATH = "data/parts_75192_rebrickable.csv"
 STORAGE_PATH = "qdrant_storage"
 COLLECTION = "parts_75192"
 MODEL = "BAAI/bge-small-en-v1.5"
